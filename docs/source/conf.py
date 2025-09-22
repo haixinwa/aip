@@ -16,7 +16,8 @@ release = 'v0.0.3'
 
 extensions = [
     'recommonmark',
-    'sphinx_markdown_tables'
+    'sphinx_markdown_tables',
+    'sphinx_rtd_theme'
 ]
 
 templates_path = ['_templates']
