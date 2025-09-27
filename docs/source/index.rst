@@ -20,7 +20,7 @@ Introduction
 Conception
 ~~~~~~~~~~~
 
-.. image:: https://github.com/user-attachments/assets/b43e74cf-cb86-4d43-91c7-4409d84aa7c8
+.. image:: https://github.com/haixinwa/aip/blob/07e51e315c03ad32c0af7a8639ab621d53a77821/docs/source/_static/image1.png
    :width: 600
    :height: 300
    :align: center
@@ -36,7 +36,7 @@ Characteristics
 
 Architecture
 ~~~~~~~~~~~~~
-.. image:: https://github.com/user-attachments/assets/7e593a88-ab0a-42fc-bca1-fd04fe739755
+.. image:: https://github.com/haixinwa/aip/blob/07e51e315c03ad32c0af7a8639ab621d53a77821/docs/source/_static/image2.png
    :width: 300
    :height: 240
    :align: center
@@ -50,7 +50,7 @@ AIP adopts a layered design:
 
 - ​​Transport Layer​​: Handles message dispatching and reception between the Session Layer and gRPC interfaces.
 
-.. image:: https://github.com/user-attachments/assets/e674e3c6-b13c-43d2-a8c5-efb306240bd7
+.. image:: https://github.com/haixinwa/aip/blob/00f6366ba36cba54b922bb31d942179a37715326/docs/source/_static/image3.png
    :width: 600
    :height: 400
    :align: center
@@ -78,7 +78,6 @@ Mode (Enum)
    EMBEDDED(3): Custom binary data (e.g. serialized objects).
 
 Examples:
-++++++++++
 
 - mode = Mode.text :specifies the current content as TEXT type
 
@@ -98,7 +97,6 @@ SessionStatus (Enum)
    STOP_RESPONSE(4): Abnormal termination due to timeout or error, or upon receiving a termination request from the client (server).
 
 Examples:
-++++++++++
 
 - status = SessionStatus.START_QUEST # marks the session as "Task Start" status
 
@@ -118,7 +116,6 @@ TaskStatus (Enum)
    FINISH(4): Task completed.
 
 Examples:
-++++++++++
 
 - task_status = TaskStatus.EXECUTING # mark the task as "running"
 
@@ -136,7 +133,7 @@ UpdateType (Enum)
    REMOVED(2): 
 
 Examples:
-++++++++++
+
 
 -----
 
@@ -147,11 +144,10 @@ AgentSkill
 
    #Describes an Agent's skill.
 
-   - skill_id(str): Unique skill identifier (e.g. `"translation"`).
-   - capability(str): Description of the skill (e.g. `"Multilingual translation"`).
+   - skill_id(str): Unique skill identifier (e.g. "translation").
+   - capability(str): Description of the skill (e.g. "Multilingual translation").
 
 Examples:
-++++++++++
 
 - skill = AgentSkill(skill_id="translation", capability=" multilingual translation")
 
@@ -166,10 +162,9 @@ TaskInfo
 
    - task_id (str): Unique task identifier (e.g., `"task_001"`).
    - parent_task_ids (List[str]): List of parent task IDs (for dependencies).
-   - task_status (`TaskStatus`): Task status (based on the `TaskStatus` enum).
+   - task_status (TaskStatus): Task status (based on the TaskStatus enum).
 
 Examples:
-++++++++++
 
 - task = TaskInfo(task_id="task_001", task_status=TaskStatus.CREATE)
 
@@ -182,13 +177,12 @@ ContentItem
 
    #Encapsulates message content, supporting multiple data types.
 
-   - `_text` (Optional[str]): Text content.
-   - `_image` (Optional[bytes]): Binary image data.
-   - `_audio` (Optional[bytes]): Binary audio data.
-   - `_embedded` (Optional[bytes]): Custom binary data.
+   - _text (Optional[str]): Text content.
+   - _image (Optional[bytes]): Binary image data.
+   - _audio (Optional[bytes]): Binary audio data.
+   - _embedded (Optional[bytes]): Custom binary data.
 
 Methods:
-++++++++++
 
 - `write_text(text: str)`: Creates a text content item.
 - `write_image(data: bytes)`: Creates an image content item.
@@ -196,7 +190,6 @@ Methods:
 - `write_embedded(data: bytes)`: Creates a custom binary content item.
 
 Examples:
-++++++++++
 
 - text_item = ContentItem.write_text("Hello, World!" )
 - image_item = ContentItem.write_image(b"image_data")
@@ -210,11 +203,10 @@ Peer
 
    #Represents a peer node (Agent or Tool) in communication.
 
-   - `agent_info` (Optional[`AgentInfo`]): Detailed information about an Agent.
-   - `tool_info` (Optional[`ToolBoxInfo`]): Detailed information about a Tool.
+   - agent_info (Optional[AgentInfo]): Detailed information about an Agent.
+   - tool_info (Optional[ToolBoxInfo]): Detailed information about a Tool.
 
 Examples:
-++++++++++
 
 - peer = Peer()
 - peer.agent_info = AgentInfo(agent_id="agent_001")
@@ -232,14 +224,13 @@ AgentInfo
    - address (str): Network address of the Agent.
    - name (str): Name of the Agent.
    - domain (str): Domain the Agent belongs to.
-   - input_mode (List[`Mode`]): List of supported input modes.
-   - output_mode (List[`Mode`]): List of supported output modes.
+   - input_mode (List[Mode]): List of supported input modes.
+   - output_mode (List[Mode]): List of supported output modes.
    - description (str): Functional description.
-   - skills (List[`AgentSkill`]): List of skills.
+   - skills (List[AgentSkill]): List of skills.
    - version (str): Version number.
 
 Examples:
-++++++++++
 
 - agent = AgentInfo(agent_id="agent_001", input_mode=[Mode.TEXT])
 
@@ -256,7 +247,6 @@ RegisterAgentResponse
    - peers (List[Peer]): List of known nodes(e.g:Peer(...),Peer(...)).
 
 Examples:
-++++++++++
 
 - response = RegisterAgentResponse(success=True, peers=[peer1, peer2])
 
@@ -275,7 +265,6 @@ ToolInfo
    - version (str): Version number.
 
 Examples:
-++++++++++
 
 - tool = ToolInfo(name ="tool_001", arguments={"lang": "en"})
 
@@ -296,7 +285,6 @@ ToolBoxInfo
    - tools (str): A list of ToolInfo objects representing the tools contained in the ToolBox.
 
 Examples:
-++++++++++
 
 -----
 
@@ -311,7 +299,6 @@ RegisterToolResponse
    
 
 Examples:
-++++++++++
 
 - response = RegisterToolResponse(success=True)
 
@@ -328,7 +315,6 @@ DeregisterNodeRequest
    
 
 Examples:
-++++++++++
 
 - request = DeregisterNodeRequest(node_id="agent_001")
 
@@ -344,7 +330,6 @@ DeregisterNodeResponse
    - success (bool) : Whether the logout was successful (True/False).
    
 Examples:
-++++++++++
 
 - response = DeregisterNodeResponse(success=True)
 
@@ -361,7 +346,6 @@ GetNodesRequest
    - domain (str) : Target domain name (e.g. "translation").
    
 Examples:
-++++++++++
 
 - request = GetNodesRequest(agent_id="agent_001", domain="translation")
 
@@ -377,7 +361,6 @@ GetNodesResponse
    - peers (List [Peer]) : node List (such as [Peer (...), Peer (...)]).
    
 Examples:
-++++++++++
 
 - response = GetNodesResponse(peers=[peer1, peer2])
 
@@ -393,20 +376,17 @@ AgentMessage
    - sender_id (str): Sender ID.
    - receiver_id (str): Receiver ID.
    - session_id (str): Unique session identifier.
-   - session_status (`SessionStatus`): Session status.
-   - task_info (`TaskInfo`): Associated task information.
+   - session_status (SessionStatus): Session status.
+   - task_info (TaskInfo): Associated task information.
    - message_id (str): Unique message identifier.
    - reply_to_message_id (str): ID of the message being replied to.
-   - content (List[`ContentItem`]): List of message content items.
+   - content (List[ContentItem]): List of message content items.
 
 Methods:
-++++++++++
 
-- add_content(item: ContentItem)`: Adds a content item to the message.
-
+- add_content(item: ContentItem): Adds a content item to the message.
 
 Examples:
-++++++++++
 
 - msg = AgentMessage(sender_id="agent_001", receiver_id="agent_002")
 - msg.add_content(ContentItem.write_text("Hello!" ))
@@ -427,7 +407,6 @@ ToolRequest
    - arguments (Dict[str, Any]): Arguments for the tool call.
 
 Examples:
-++++++++++
 
 - request = ToolRequest(tool_name="translator", arguments={"text": "Hello"})
 
@@ -445,16 +424,14 @@ ToolResponse
    - session_id (str): Session ID.
    - is_error (bool): Indicates if an error occurred.
    - error_message (str): Error description.
-   - content (List[`ContentItem`]): List of response content items.
+   - content (List[ContentItem]): List of response content items.
 
 Methods:
-++++++++++
 
-- `add_content(item: ContentItem)`: Adds a content item to the response.
+- add_content(item: ContentItem): Adds a content item to the response.
 
 
 Examples:
-++++++++++
 
 - response = ToolResponse(is_error=False, content=[text_item])
 
@@ -470,7 +447,6 @@ HeartbeatRequest
    - sender_id (str): ID of the node (Agent or Tool) sending the request.
 
 Examples:
-++++++++++
 
 - request = HeartbeatRequest(sender_id="agent_001")
 
@@ -487,7 +463,6 @@ HeartbeatResponse
    - message (str): Response message.
 
 Examples:
-++++++++++
 
 - response = HeartbeatResponse(success=True, message="Heartbeat received")
 
@@ -503,7 +478,6 @@ UpdateNodeInfoRequest
    - node_info (peer): 
 
 Examples:
-++++++++++
 
 -----
 
@@ -518,7 +492,6 @@ UpdateNodeInfoResponse
    - message (str): Response message.
 
 Examples:
-++++++++++
 
 -----
 
@@ -533,7 +506,6 @@ UpdateSubscriptionRequest
    - node_ids (str): The ID of the node (Agent or tool) sending the request (e.g. "agent_001"/"tool_001").
 
 Examples:
-++++++++++
 
 -----
 
@@ -544,12 +516,11 @@ NodeUpdate
 
    #
 
-   - update_type (`UpdateType`): 
+   - update_type (UpdateType): 
    - node_id (str): The ID of the node (Agent or tool) sending the request (e.g. "agent_001"/"tool_001").
    - peer (List[Peer]): node List (such as [Peer (...), Peer (...)]).
 
 Examples:
-++++++++++
 
 -----
 
@@ -564,7 +535,6 @@ UnsubscribeRequest
    - node_ids (str): The ID of the node (Agent or tool) sending the request (e.g. "agent_001"/"tool_001").
 
 Examples:
-++++++++++
 
 -----
 
@@ -579,7 +549,6 @@ UnsubscribeResponse
    - message (str): Response message.
 
 Examples:
-++++++++++
 
 -----
 
@@ -632,21 +601,20 @@ Gateway
 
    #class moudle.Gateway(host_address: str,service_address: str,gateway_id: str)
    Provides a central proxy service for managing agent registration and communication. As a core component, Gateway maintains information about all nodes in the network and ensures message routing and communication between nodes.
-   - address (str): Deployment address of the gateway service (e.g., `"localhost:50051"`)
+   - address (str): Deployment address of the gateway service (e.g., "localhost:50051")
    - gateway_id (str): Unique identifier for the gateway (auto-generated if not provided)
 
 Methods:
-""""""""""
 
 - start()
    Initializes and starts the gateway service to receive registration requests and handle routing.
 - stop()
    Stops the gateway server and releases resources.
-- connect_to_gateway(gateway_address)` 
+- connect_to_gateway(gateway_address) 
    Connect to another gateway.
 
    - Parameter : gateway_address :  Address of the gateway to connect to
-- get_registered_nodes() → Dict[str, Union[AgentInfo, ToolInfo]`、
+- get_registered_nodes() → Dict[str, Union[AgentInfo, ToolInfo]、
    Gets all registered nodes (Agents and Tools).
 
    - Returns a dictionary of: {node ID: node information} (Dict[str, Union[AgentInfo, ToolInfo]])
@@ -674,13 +642,12 @@ Agent
    - domain (str): Domain or group the agent belongs to.
    - description (str): Detailed functional description of the agent.
    - version (str): Agent version.
-   - input_mode (List[`Mode`]): List of input modalities the agent accepts. Possible values: `TEXT`, `IMAGE`, `AUDIO`, `EMBEDDED`.
-   - output_mode (List[`Mode`]): List of output modalities the agent provides. Possible values: `TEXT`, `IMAGE`, `AUDIO`, `EMBEDDED`.
-   - skills (List[`AgentSkill`]): List of skills the agent possesses.
-   - agent_info (`AgentInfo`): An object containing agent information for registration with the gateway.
+   - input_mode (List[Mode]): List of input modalities the agent accepts. Possible values: `TEXT`, `IMAGE`, `AUDIO`, `EMBEDDED`.
+   - output_mode (List[Mode]): List of output modalities the agent provides. Possible values: `TEXT`, `IMAGE`, `AUDIO`, `EMBEDDED`.
+   - skills (List[AgentSkill]): List of skills the agent possesses.
+   - agent_info (AgentInfo): An object containing agent information for registration with the gateway.
 
 Methods:
-""""""""""
 
 - _create_agent_info() → AgentInfo
    Create an AgentInfo object for registration with the gateway.
@@ -837,13 +804,12 @@ Tool
    - domain (str): Domain or group the tool belongs to.
    - description (str): Detailed functional description of the tool.
    - version (str): Tool version.
-   - input_mode (List[`Mode`]): List of input modalities the tool accepts. Possible values: `TEXT`, `IMAGE`, `AUDIO`, `EMBEDDED`.
-   - output_mode (List[`Mode`]): List of output modalities the tool provides. Possible values: `TEXT`, `IMAGE`, `AUDIO`, `EMBEDDED`.
+   - input_mode (List[Mode]): List of input modalities the tool accepts. Possible values: `TEXT`, `IMAGE`, `AUDIO`, `EMBEDDED`.
+   - output_mode (List[Mode]): List of output modalities the tool provides. Possible values: `TEXT`, `IMAGE`, `AUDIO`, `EMBEDDED`.
    - arguments (Dict[str, str]): Dictionary of parameter names and their values for the tool.
-   - tool_info (`ToolInfo`): An object containing tool information for registration with the gateway.
+   - tool_info (ToolInfo): An object containing tool information for registration with the gateway.
 
 Methods:
-""""""""""
 
 - start() → Tool
    Starts the tool server.
