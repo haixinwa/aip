@@ -20,7 +20,7 @@ Introduction
 Conception
 ~~~~~~~~~~~
 
-.. image:: https://github.com/haixinwa/aip/blob/07e51e315c03ad32c0af7a8639ab621d53a77821/docs/source/_static/image1.png
+.. image:: https://raw.githubusercontent.com/haixinwa/aip/07e51e315c03ad32c0af7a8639ab621d53a77821/docs/source/_static/image1.png
    :width: 600
    :height: 300
    :align: center
@@ -36,7 +36,7 @@ Characteristics
 
 Architecture
 ~~~~~~~~~~~~~
-.. image:: https://github.com/haixinwa/aip/blob/07e51e315c03ad32c0af7a8639ab621d53a77821/docs/source/_static/image2.png
+.. image:: https://raw.githubusercontent.com/haixinwa/aip/07e51e315c03ad32c0af7a8639ab621d53a77821/docs/source/_static/image2.png
    :width: 300
    :height: 240
    :align: center
@@ -50,7 +50,7 @@ AIP adopts a layered design:
 
 - ​​Transport Layer​​: Handles message dispatching and reception between the Session Layer and gRPC interfaces.
 
-.. image:: https://github.com/haixinwa/aip/blob/00f6366ba36cba54b922bb31d942179a37715326/docs/source/_static/image3.png
+.. image:: https://raw.githubusercontent.com/haixinwa/aip/00f6366ba36cba54b922bb31d942179a37715326/docs/source/_static/image3.png
    :width: 600
    :height: 400
    :align: center
