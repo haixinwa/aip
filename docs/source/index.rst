@@ -160,7 +160,7 @@ TaskInfo
 
    #Stores basic information about a task.
 
-   - task_id (str): Unique task identifier (e.g., `"task_001"`).
+   - task_id (str): Unique task identifier (e.g., "task_001").
    - parent_task_ids (List[str]): List of parent task IDs (for dependencies).
    - task_status (TaskStatus): Task status (based on the TaskStatus enum).
 
